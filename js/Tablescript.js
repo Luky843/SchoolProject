@@ -4,7 +4,7 @@ function Create() {
     //Name Validator
     if (document.getElementById("Name").value === "") {
 
-        document.getElementById("er1").innerHTML = "Zadajte Meno!";
+        document.getElementById("er1").innerHTML = "Enter Name!";
         document.getElementById("er1").style.color = "red";
         document.getElementById("er1").style.display = "block";
     }
@@ -17,7 +17,7 @@ function Create() {
         //Age Validator
         var age = document.getElementById('Age').value;
         if (isNaN(age) || age < 1 || age > 100) {
-            document.getElementById("AgeErr").innerHTML = "Zadajte Vek!";
+            document.getElementById("AgeErr").innerHTML = "Enter Age!";
             document.getElementById("AgeErr").style.color = "red";
             document.getElementById("AgeErr").style.display = "block";
         }
@@ -47,10 +47,10 @@ function Create() {
       if (!filter.test(Name.value)) {
           swal({
               title: "Oops...",
-              text: "Zadajte meno a priezvisko!",
+              text: "Enter name and surname!",
               type: "error",
               confirmButtonColor: "#AD1457",
-              confirmButtonText: "Ok, rozumiem",
+              confirmButtonText: "OK, I understand",
           }
   
            );
