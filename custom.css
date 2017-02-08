@@ -1,0 +1,17 @@
+/* CSS Document Changed buton, changed header box with text, add palceholder by Matus  */
+
+.headerBox {
+       background-color: #999900;
+}
+
+.textBox {
+      color: white !important;
+}
+
+.btnBox {
+      background-color:#999900 !important;
+      padding: 15px 32px;
+      font-size: 16px;
+      border: none;
+}
+
