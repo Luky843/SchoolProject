@@ -246,7 +246,7 @@ body.stop-scrolling {
           transform: rotate(-45deg);
           right: 16px; }
     .sweet-alert .sa-icon.sa-warning {
-      border-color: #F8BB86; }
+      border-color: #F44336; }
       .sweet-alert .sa-icon.sa-warning .sa-body {
         position: absolute;
         width: 5px;
@@ -256,7 +256,7 @@ body.stop-scrolling {
         -webkit-border-radius: 2px;
         border-radius: 2px;
         margin-left: -2px;
-        background-color: #F8BB86; }
+        background-color: #F44336; }
       .sweet-alert .sa-icon.sa-warning .sa-dot {
         position: absolute;
         width: 7px;
@@ -266,7 +266,7 @@ body.stop-scrolling {
         margin-left: -3px;
         left: 50%;
         bottom: 10px;
-        background-color: #F8BB86; }
+        background-color: #F44336; }
     .sweet-alert .sa-icon.sa-info {
       border-color: #C9DAE1; }
       .sweet-alert .sa-icon.sa-info::before {
@@ -693,9 +693,9 @@ body.stop-scrolling {
 
 @keyframes pulseWarning {
   0% {
-    border-color: #F8D486; }
+    border-color: #E57373; }
   100% {
-    border-color: #F8BB86; } }
+    border-color: #F44336; } }
 
 .pulseWarning {
   -webkit-animation: pulseWarning 0.75s infinite alternate;
@@ -709,9 +709,9 @@ body.stop-scrolling {
 
 @keyframes pulseWarningIns {
   0% {
-    background-color: #F8D486; }
+    background-color: #E57373; }
   100% {
-    background-color: #F8BB86; } }
+    background-color: #F44336; } }
 
 .pulseWarningIns {
   -webkit-animation: pulseWarningIns 0.75s infinite alternate;
