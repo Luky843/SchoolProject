@@ -29,7 +29,8 @@ function Create() {
 
             //Age Validator
             var age = document.getElementById('Age').value;
-            if (isNaN(age) || age < 1 || age > 100) {
+            
+            if (!isInputDateValid(age)) {
                 document.getElementById("AgeErr").innerHTML = "Enter Age!";
                 document.getElementById("AgeErr").style.color = "red";
                 document.getElementById("AgeErr").style.display = "block";
@@ -38,6 +39,18 @@ function Create() {
                 document.getElementById("AgeErr").innerHTML = "";
                 document.getElementById("AgeErr").style.color = "red";
                 document.getElementById("AgeErr").style.display = "none";
+                /***********************************************************/
+                var actual_date = new Date();
+                if (/./.test(age)) {
+                    age = age.replace(".", "-");
+                }
+                age = age.split("-");
+                var day = age[0];
+                var mounth = age[1];
+                var year = age[2];
+                var new_date = new Date(Number(year), Number(mounth) - 1, Number(day));
+                age = actual_date.getFullYear() - new_date.getFullYear();
+                /***********************************************************/
 
                 var table = document.getElementById("MyTable");
                 var row = table.insertRow(table.rows.length);
@@ -47,7 +60,7 @@ function Create() {
                 var cell2 = row.insertCell(1);
                 cell2.innerHTML = document.getElementById('Email').value;
                 var cell3 = row.insertCell(2);
-                cell3.innerHTML = document.getElementById('Age').value;
+                cell3.innerHTML = age;
                 var cell4 = row.insertCell(3);
                 cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
                 var cell5 = row.insertCell(4);
@@ -77,6 +90,39 @@ function Create() {
         
           return true;
       }*/
+function isInputDateValid(date){
+    var actual_date = new Date()
+    var patern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+    if (!patern.test(date)) {
+        return false;
+    }
+    var day, month, year;
+    //alert("" + date);
+    //alert(typeof date);
+    if (/-/.test(date)) {
+        var res = date.split("-");
+        day = res[0];
+        month = res[1];
+        year = res[2];
+    } else if (/./.test(date)) {
+        var res = date.split(".");
+        day = res[0];
+        month = res[1];
+        year = res[2];
+    } else {
+        return false;
+        var r = date.replace(/\//i, "-");
+        var res = r.split("-");
+        day = res[0];
+        month = res[1];
+        year = res[2];
+    }
+    new_date = new Date(Number(year), Number(month)-1, Number(day));
+    if (new_date >= actual_date) {
+        return false;
+    }
+    return true;
+}
 
 
     function Alert(r) {
