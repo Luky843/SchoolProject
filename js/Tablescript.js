@@ -5,7 +5,7 @@ function Create() {
     var Name = document.getElementById('Name');
     var filter = /^[A-Z][a-zA-Z']+[ ]+[A-Z][a-zA-Z'\- ]*$/;
     if (!filter.test(Name.value)) {
-        document.getElementById("er1").innerHTML = "Enter Name!";
+        document.getElementById("er1").innerHTML = "Enter Name and Surname!";
         document.getElementById("er1").style.color = "red";
         document.getElementById("er1").style.display = "block";
     }
@@ -31,7 +31,7 @@ function Create() {
             var age = document.getElementById('Age').value;
             
             if (!isInputDateValid(age)) {
-                document.getElementById("AgeErr").innerHTML = "Enter Age!";
+                document.getElementById("AgeErr").innerHTML = "Wrong Date!";
                 document.getElementById("AgeErr").style.color = "red";
                 document.getElementById("AgeErr").style.display = "block";
             }
