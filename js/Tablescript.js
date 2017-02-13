@@ -51,7 +51,7 @@ function Create() {
                 var mounth = age[1];
                 var year = age[2];
                 var new_date = new Date(Number(year), Number(mounth) - 1, Number(day));
-                age = actual_date.getFullYear() - new_date.getFullYear();
+                age = new Date(actual_date - new_date).getFullYear() - 1970;
                 /***********************************************************/
 
                 var table = document.getElementById("MyTable");
