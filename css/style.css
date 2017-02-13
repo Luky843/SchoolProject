@@ -4,7 +4,17 @@ body {
     margin: 0, auto !important;
 }
 
-footer {
+.h1,
+    h1{
+    font-size: 50px !important;
+}
+
+.h2,
+    h2{
+    font-size: 45px !important;
+}
+
+/*footer {
 position: fixed;
     bottom: 10px;
     right: 500px;
@@ -14,4 +24,4 @@ position: fixed;
     background-color: none;
     clear: left;
     text-align: center;
-}
+}*/
