@@ -5,7 +5,7 @@ function Create() {
     var Name = document.getElementById('Name');
     var filter = /^[A-Z][a-zA-Z']+[ ]+[A-Z][a-zA-Z'\- ]*$/;
     if (!filter.test(Name.value)) {
-        document.getElementById("er1").innerHTML = "Enter Name!";
+        document.getElementById("er1").innerHTML = "Enter Name and Surname!";
         document.getElementById("er1").style.color = "red";
         document.getElementById("er1").style.display = "block";
     }
@@ -58,7 +58,7 @@ function Create() {
                 var cell1 = row.insertCell(0);
                 cell1.innerHTML = document.getElementById('Name').value;
                 var cell2 = row.insertCell(1);
-                cell2.innerHTML = document.getElementById('Email').value;
+                cell2.innerHTML = '<i class="fa fa-envelope" style="font-size:1.2em; aria-hidden="true"></i>' + ' ' + document.getElementById('Email').value;
                 var cell3 = row.insertCell(2);
                 cell3.innerHTML = age;
                 var cell4 = row.insertCell(3);
