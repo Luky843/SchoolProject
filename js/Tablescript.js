@@ -1,6 +1,8 @@
 // JavaScript source code
 charset = "utf-8";
 function Create() {
+  /*  console.log("velkost vabulky: " + document.getElementById("MyTable").rows.length);
+    console.log("bunkay: " + document.getElementById("MyTable").rows[1].cells[1].innerHTML);*/
     //Name Validator
     var Name = document.getElementById('Name');
     var filter = /^[A-Z][a-zA-Z']+[ ]+[A-Z|a-z][a-zA-Z'\- ]*$/;
@@ -23,6 +25,14 @@ function Create() {
             document.getElementById("EmErr").style.display = "block";
         }
         else {
+            //validate unique email
+            if (!isEmailUnique(document.getElementById('Email').value)) {
+                document.getElementById("EmErr").innerHTML = "thi email was used!";
+                document.getElementById("EmErr").style.color = "red";
+                document.getElementById("EmErr").style.display = "block";
+                return;
+            }
+
             document.getElementById("EmErr").innerHTML = "";
             document.getElementById("EmErr").style.color = "red";
             document.getElementById("EmErr").style.display = "none";
@@ -123,6 +133,21 @@ function isInputDateValid(date) {
     new_date = new Date(Number(year), Number(month) - 1, Number(day));
     if (new_date >= actual_date) {
         return false;
+    }
+    return true;
+}
+
+function isEmailUnique(email) {
+    var table = document.getElementById("MyTable");
+    for (var i = 0 ; i < table.rows.length; i++) {
+        try {
+            var mail_from_cell = table.rows[i].cells[1].innerHTML;
+            console.log(mail_from_cell);
+            if (mail_from_cell == email) {
+                return false;
+            }
+        }catch(err){
+        }
     }
     return true;
 }
