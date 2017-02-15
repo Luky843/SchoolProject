@@ -8,7 +8,7 @@ function Create() {
     console.log("bunkay: " + document.getElementById("MyTable").rows[1].cells[1].innerHTML);*/
     //Name Validator
     var Name = document.getElementById('Name');
-    var filter = /^[A-Z][a-zA-Z']+[ ]+[A-Z|a-z][a-zA-Z'\- ]*$/;
+    var filter = /^[A-Z|a-z][a-zA-Z']+[ ]+[A-Z|a-z][a-zA-Z'\- ]*$/;
     if (!filter.test(Name.value)) {
         document.getElementById("er1").innerHTML = "Enter Name and Surname!";
         document.getElementById("er1").style.color = "red";
@@ -94,13 +94,13 @@ function Create() {
                   }else{
                       var x = document.getElementById("MyTable").rows[i].cells; 
                       for(var j=0;j<5;j++){
-                            x[j].bgColor = "#E57373";                            
+                          x[j].bgColor = "#F48FB1";
                       }               
                    }                   
                 }
                 
                 
-                cell5.innerHTML = '<button type="button" onclick="Alert(this)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" value="Delete"></i></button>';
+                cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
                 document.getElementById("form").reset();
 
             }
