@@ -20,6 +20,10 @@ h1 {
     font-size: 400%;
 }
 
-.bigtxt {
+#fontSize {
     font-size: 150%;
+}
+
+td {
+    background-color:rgba(,,,0.5);
 }
