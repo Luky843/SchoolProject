@@ -1,7 +1,7 @@
 // JavaScript source code
 charset = "utf-8";
 
-var i=1;
+var i=1;    
 
 function Create() {
   /*  console.log("velkost vabulky: " + document.getElementById("MyTable").rows.length);
@@ -81,24 +81,24 @@ function Create() {
                 cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
                 var cell5 = row.insertCell(4);
                 
+                
                 i++;
                 
                 if(i!=1) {
                     
                   if(document.getElementById('male').checked){
                       var x = document.getElementById("MyTable").rows[i].cells;
-                      x[0].bgColor = "LightBlue"; 
-                      x[1].bgColor = "LightBlue";
-                      x[2].bgColor = "LightBlue";
-                      x[3].bgColor = "LightBlue";  
+                      for(var j=0;j<5;j++){
+                            x[j].bgColor = "#337AB7";
+                            }
                   }else{
-                      var x = document.getElementById("MyTable").rows[i].cells;
-                      x[0].bgColor = "LightCoral"; 
-                      x[1].bgColor = "LightCoral";
-                      x[2].bgColor = "LightCoral";
-                      x[3].bgColor = "LightCoral";                
+                      var x = document.getElementById("MyTable").rows[i].cells; 
+                      for(var j=0;j<5;j++){
+                            x[j].bgColor = "#E57373";                            
+                      }               
                    }                   
                 }
+                
                 
                 cell5.innerHTML = '<button type="button" onclick="Alert(this)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" value="Delete"></i></button>';
                 document.getElementById("form").reset();
