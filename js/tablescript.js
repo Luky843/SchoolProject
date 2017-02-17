@@ -214,3 +214,58 @@ function Create() {
 
         });
     }
+
+    //show only male
+    function showManList() {
+        table = document.getElementById("MyTable")
+        //refresh table
+        for (var i = 0; i < table.rows.length; i++) {
+            try{
+                table.rows[i].style.display = "";
+            } catch (err) {
+            }
+        }
+
+        //hide female
+        for (var i = 0; i < table.rows.length; i++) {
+            try {
+                var bgColor = table.rows[i].cells[3].getAttribute("bgcolor"); // #F48FB1 female color
+                if (bgColor == "#F48FB1") {
+                    table.rows[i].style.display = "none";
+                }
+            } catch (err) {
+            }
+        }
+        
+    }
+
+    function showFemaleList() {
+        table = document.getElementById("MyTable")
+        //refresh table
+        for (var i = 0; i < table.rows.length; i++) {
+            try {
+                table.rows[i].style.display = "";
+            } catch (err) {
+            }
+        }
+
+        //hide male
+        for (var i = 0; i < table.rows.length; i++) {
+            try {
+                var bgColor = table.rows[i].cells[3].getAttribute("bgcolor"); // #337AB7 male color 
+                if (bgColor == "#337AB7") {
+                    table.rows[i].style.display = "none";
+                }
+            } catch (err) {
+            }
+        }
+    }
+
+    function showAllSex() {
+        for (var i = 0; i < table.rows.length; i++) {
+            try {
+                table.rows[i].style.display = "";
+            } catch (err) {
+            }
+        }
+    }
