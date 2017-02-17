@@ -19,7 +19,7 @@ function Create() {
         document.getElementById("er1").innerHTML = "";
         document.getElementById("er1").style.color = "red";
         document.getElementById("er1").style.display = "none";
-        console.log(1);
+       // console.log(1);
         //Surname Validator
         var Surname = document.getElementById('Surname');
         var filter = /^[a-zA-Z ]{4,30}$/;
@@ -57,6 +57,13 @@ function Create() {
                 //Age Validator
 
                 var age = document.getElementById('Age').value;
+                //empty date validate
+                if (age == "") {
+                    document.getElementById("AgeErr").innerHTML = "Enter date!";
+                    document.getElementById("AgeErr").style.color = "red";
+                    document.getElementById("AgeErr").style.display = "block";
+                    return;
+                }
 
                 if (!isInputDateValid(age)) {
                     document.getElementById("AgeErr").innerHTML = "Wrong Date!";
@@ -179,7 +186,7 @@ function Create() {
         for (var i = 0 ; i < table.rows.length; i++) {
             try {
                 var mail_from_cell = table.rows[i].cells[1].innerHTML;
-                console.log(mail_from_cell);
+               // console.log(mail_from_cell);
                 if (mail_from_cell == email) {
                     return false;
                 }
