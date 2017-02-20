@@ -22,7 +22,7 @@ function Create() {
        // console.log(1);
         //Surname Validator
         var Surname = document.getElementById('Surname');
-        var filter = /^[a-zA-Z ]{4,30}$/;
+        var filter = /^[a-zA-Z ]{2,30}$/;
         if (!filter.test(Surname.value)) {
             document.getElementById("er2").innerHTML = "Enter Surname!";
             document.getElementById("er2").style.color = "red";
