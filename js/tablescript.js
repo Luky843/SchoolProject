@@ -22,7 +22,7 @@ function Create() {
        // console.log(1);
         //Surname Validator
         var Surname = document.getElementById('Surname');
-        var filter = /^[a-zA-Z ]{2,30}$/;
+        var filter = /^[a-zA-Z ]{4,30}$/;
         if (!filter.test(Surname.value)) {
             document.getElementById("er2").innerHTML = "Enter Surname!";
             document.getElementById("er2").style.color = "red";
@@ -266,6 +266,24 @@ function Create() {
             try {
                 table.rows[i].style.display = "";
             } catch (err) {
+            }
+        }
+    }
+
+    function search() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("MyTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
         }
     }
