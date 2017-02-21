@@ -1,7 +1,15 @@
 // JavaScript source code
 charset = "utf-8";
 
-var i=1;    
+var i = 1;
+
+/**IMPORTANT!!!**/
+/*
+* if listDysplayeState = 0; show both sex
+*if listDysplayeState = 1; show show only female
+*if listDysplayeState = 2; show show only male
+*/
+var listDysplayeState = 0;
 
 function Create() {
     /*  console.log("velkost vabulky: " + document.getElementById("MyTable").rows.length);
@@ -90,6 +98,11 @@ function Create() {
                     /***********************************************************/
                     var table = document.getElementById("MyTable");
                     var row = table.insertRow(table.rows.length);
+                    if (document.getElementById('male').checked) {
+                        row.className = "male";
+                    } else {
+                        row.className = "female";
+                    }
                     var tabl = table.length;
                     var cell1 = row.insertCell(0);
                     cell1.innerHTML = '<b><span class="bigger">' + document.getElementById('Name').value + ' ' + document.getElementById('Surname').value; + '</span></b>';
@@ -122,7 +135,15 @@ function Create() {
 
                     cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
                     document.getElementById("form").reset();
-
+                    //fix dysplay mode
+                    if (document.getElementById("search") != "") {
+                        search();
+                    } else if (listDysplayeState == 1) {
+                        showFemaleList();
+                    } else if (listDysplayeState == 2) {
+                        showManList();
+                    }
+                    //end fixing
                 }
             }
         }
@@ -229,14 +250,17 @@ function Create() {
         //hide female
         for (var i = 0; i < table.rows.length; i++) {
             try {
-                var bgColor = table.rows[i].cells[3].getAttribute("bgcolor"); // #F48FB1 female color
-                if (bgColor == "#F48FB1") {
+                var femaleClass = table.rows[i].getAttribute("class");
+                if (femaleClass == "female") {
                     table.rows[i].style.display = "none";
                 }
             } catch (err) {
             }
         }
-        
+        listDysplayeState = 2;
+        if (document.getElementById("search") != "") {
+            search();
+        }
     }
 
     function showFemaleList() {
@@ -252,12 +276,16 @@ function Create() {
         //hide male
         for (var i = 0; i < table.rows.length; i++) {
             try {
-                var bgColor = table.rows[i].cells[3].getAttribute("bgcolor"); // #337AB7 male color 
-                if (bgColor == "#337AB7") {
+                var maleClass = table.rows[i].getAttribute("class"); 
+                if (maleClass == "male") {
                     table.rows[i].style.display = "none";
                 }
             } catch (err) {
             }
+        }
+        listDysplayeState = 1;
+        if (document.getElementById("search") != "") {
+            search();
         }
     }
 
@@ -267,6 +295,10 @@ function Create() {
                 table.rows[i].style.display = "";
             } catch (err) {
             }
+        }
+        listDysplayeState = 0;
+        if (document.getElementById("search") != "") {
+            search();
         }
     }
 
@@ -281,6 +313,17 @@ function Create() {
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    //fix dysplay mode
+                    if (listDysplayeState == 1) {
+                        if (tr[i].getAttribute("class") == "male") {
+                            tr[i].style.display = "none";
+                        }
+                    } else if (listDysplayeState == 2) {
+                        if (tr[i].getAttribute("class") == "female") {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                    //end fixing
                 } else {
                     tr[i].style.display = "none";
                 }
