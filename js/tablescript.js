@@ -91,7 +91,7 @@ function Create() {
                     }
                     age = age.split("-");
                     var day = age[0];
-                    var mounth = age[1];
+                    var month = age[1];
                     var year = age[2];
                     var new_date = new Date(Number(year), Number(mounth) - 1, Number(day));
                     age = new Date(actual_date - new_date).getFullYear() - 1970;
