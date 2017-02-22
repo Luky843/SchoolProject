@@ -93,7 +93,7 @@ function Create() {
                     var day = age[0];
                     var month = age[1];
                     var year = age[2];
-                    var new_date = new Date(Number(year), Number(mounth) - 1, Number(day));
+                    var new_date = new Date(Number(year), Number(month) - 1, Number(day));
                     age = new Date(actual_date - new_date).getFullYear() - 1970;
                     /***********************************************************/
                     var table = document.getElementById("MyTable");
