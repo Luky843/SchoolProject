@@ -5,149 +5,207 @@ var i = 1;
 
 /**IMPORTANT!!!**/
 /*
-* if listDysplayeState = 0; show both sex
+*if listDysplayeState = 0; show both sex
 *if listDysplayeState = 1; show show only female
 *if listDysplayeState = 2; show show only male
 */
 var listDysplayeState = 0;
 
-function Create() {
-    /*  console.log("velkost vabulky: " + document.getElementById("MyTable").rows.length);
-      console.log("bunkay: " + document.getElementById("MyTable").rows[1].cells[1].innerHTML);*/
-
-    //Name Validator
-    var Name = document.getElementById('Name');
-    var filter = /^[a-zA-Z ]{3,30}$/;
-    if (!filter.test(Name.value)) {
+//name validator
+function isNameValid() {
+    if (document.getElementById('Name').value == "") {
         document.getElementById("er1").innerHTML = "Enter Name!";
         document.getElementById("er1").style.color = "red";
         document.getElementById("er1").style.display = "block";
-    }
-    else {
+        return false;
+    } else {
         document.getElementById("er1").innerHTML = "";
         document.getElementById("er1").style.color = "red";
-        document.getElementById("er1").style.display = "none";
-       // console.log(1);
-        //Surname Validator
-        var Surname = document.getElementById('Surname');
-        var filter = /^[a-zA-Z ]{4,30}$/;
-        if (!filter.test(Surname.value)) {
-            document.getElementById("er2").innerHTML = "Enter Surname!";
-            document.getElementById("er2").style.color = "red";
-            document.getElementById("er2").style.display = "block";
-        }
-        else {
-            document.getElementById("er2").innerHTML = "";
-            document.getElementById("er2").style.color = "red";
-            document.getElementById("er2").style.display = "none";
+        document.getElementById("er1").style.display = "block";
+    }
+    var name = document.getElementById('Name');
+    var filter = /^[a-zA-Z ]{3,30}$/;
+    if (!filter.test(name.value)) {
+        document.getElementById("er1").innerHTML = "Incorrect Name!";
+        document.getElementById("er1").style.color = "red";
+        document.getElementById("er1").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("er1").innerHTML = "";
+        document.getElementById("er1").style.color = "red";
+        document.getElementById("er1").style.display = "block";
+    }
+    return true;
+}
 
-            //Email Validator
-            var Email = document.getElementById('Email');
-            var filter = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!filter.test(Email.value)) {
-                document.getElementById("EmErr").innerHTML = "Enter Email!";
-                document.getElementById("EmErr").style.color = "red";
-                document.getElementById("EmErr").style.display = "block";
+//surname validarot
+function isSurnameValid() {
+    if (document.getElementById('Surname').value == "") {
+        document.getElementById("er2").innerHTML = "Enter Surname!";
+        document.getElementById("er2").style.color = "red";
+        document.getElementById("er2").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("er2").innerHTML = "";
+        document.getElementById("er2").style.color = "red";
+        document.getElementById("er2").style.display = "block";
+    }
+    var surname = document.getElementById('Surname');
+    var filter = /^[a-zA-Z ]{4,30}$/;
+    if (!filter.test(surname.value)) {
+        document.getElementById("er2").innerHTML = "Incorrect Surname!";
+        document.getElementById("er2").style.color = "red";
+        document.getElementById("er2").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("er2").innerHTML = "";
+        document.getElementById("er2").style.color = "red";
+        document.getElementById("er2").style.display = "block";
+    }
+    return true;
+}
+
+//validate email
+function isEmailValid(){
+    if (document.getElementById('Email').value == "") {
+        document.getElementById("EmErr").innerHTML = "Enter Email!";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("EmErr").innerHTML = "";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+    }
+    var email = document.getElementById('Email');
+    var filter = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!filter.test(email.value)) {
+        document.getElementById("EmErr").innerHTML = "Incorrect Email!";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("EmErr").innerHTML = "";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+    }
+    if (!isEmailUnique(document.getElementById('Email').value)) {
+        document.getElementById("EmErr").innerHTML = "This Email has been already used!";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("EmErr").innerHTML = "";
+        document.getElementById("EmErr").style.color = "red";
+        document.getElementById("EmErr").style.display = "block";
+    }
+    return true;
+}
+
+//date of birth validator
+function isDobValid() {
+    if (document.getElementById('Age').value == "") {
+        document.getElementById("AgeErr").innerHTML = "Enter date!";
+        document.getElementById("AgeErr").style.color = "red";
+        document.getElementById("AgeErr").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("AgeErr").innerHTML = "";
+        document.getElementById("AgeErr").style.color = "red";
+        document.getElementById("AgeErr").style.display = "block";
+    }
+    if (!isInputDateValid(document.getElementById('Age').value)) {
+        document.getElementById("AgeErr").innerHTML = "Incorrect Date!";
+        document.getElementById("AgeErr").style.color = "red";
+        document.getElementById("AgeErr").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("AgeErr").innerHTML = "";
+        document.getElementById("AgeErr").style.color = "red";
+        document.getElementById("AgeErr").style.display = "block";
+    }
+    return true;
+}
+
+
+function isInputValid() {
+    isNameValid();
+    isSurnameValid();
+    isEmailValid();
+    isDobValid();
+    if (isNameValid() && isSurnameValid() && isEmailValid() && isDobValid()) {
+        return true;
+    }
+    return false;
+}
+
+function Create() {
+    
+    if (!isInputValid()) {
+        return;
+    }
+
+    var actual_date = new Date();
+    var age = document.getElementById('Age').value;
+    if (/./.test(age)) {
+        age = age.replace(".", "-");
+        age = age.replace(".", "-");
+    }
+    age = age.split("-");
+    var day = age[0];
+    var month = age[1];
+    var year = age[2];
+    var new_date = new Date(Number(year), Number(month) - 1, Number(day));
+    age = new Date(actual_date - new_date).getFullYear() - 1970;
+    /***********************************************************/
+    var table = document.getElementById("MyTable");
+    var row = table.insertRow(table.rows.length);
+    if (document.getElementById('male').checked) {
+        row.className = "male";
+    } else {
+        row.className = "female";
+    }
+    var tabl = table.length;
+    var cell1 = row.insertCell(0);
+    cell1.innerHTML = '<b><span class="bigger">' + document.getElementById('Name').value + ' ' + document.getElementById('Surname').value; + '</span></b>';
+    var cell2 = row.insertCell(1);
+    cell2.innerHTML = document.getElementById('Email').value;
+    var cell3 = row.insertCell(2);
+    cell3.innerHTML = age;
+    var cell4 = row.insertCell(3);
+    cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
+    var cell5 = row.insertCell(4);
+
+
+    i++;
+
+    if (i != 1) {
+
+        if (document.getElementById('male').checked) {
+            var x = document.getElementById("MyTable").rows[i].cells;
+            for (var j = 0; j < 5; j++) {
+                x[j].bgColor = "#337AB7";
             }
-            else {
-                //validate unique email
-                if (!isEmailUnique(document.getElementById('Email').value)) {
-                    document.getElementById("EmErr").innerHTML = "This Email has been already used!";
-                    document.getElementById("EmErr").style.color = "red";
-                    document.getElementById("EmErr").style.display = "block";
-                    return;
-                }
-
-                document.getElementById("EmErr").innerHTML = "";
-                document.getElementById("EmErr").style.color = "red";
-                document.getElementById("EmErr").style.display = "none";
-
-                //Age Validator
-
-                var age = document.getElementById('Age').value;
-                //empty date validate
-                if (age == "") {
-                    document.getElementById("AgeErr").innerHTML = "Enter date!";
-                    document.getElementById("AgeErr").style.color = "red";
-                    document.getElementById("AgeErr").style.display = "block";
-                    return;
-                }
-
-                if (!isInputDateValid(age)) {
-                    document.getElementById("AgeErr").innerHTML = "Wrong Date!";
-                    document.getElementById("AgeErr").style.color = "red";
-                    document.getElementById("AgeErr").style.display = "block";
-                }
-                else {
-                    document.getElementById("AgeErr").innerHTML = "";
-                    document.getElementById("AgeErr").style.color = "red";
-                    document.getElementById("AgeErr").style.display = "none";
-                    /***********************************************************/
-                    //get age from date
-                    var actual_date = new Date();
-                    if (/./.test(age)) {
-                        age = age.replace(".", "-");
-                        age = age.replace(".", "-");
-                    }
-                    age = age.split("-");
-                    var day = age[0];
-                    var month = age[1];
-                    var year = age[2];
-                    var new_date = new Date(Number(year), Number(month) - 1, Number(day));
-                    age = new Date(actual_date - new_date).getFullYear() - 1970;
-                    /***********************************************************/
-                    var table = document.getElementById("MyTable");
-                    var row = table.insertRow(table.rows.length);
-                    if (document.getElementById('male').checked) {
-                        row.className = "male";
-                    } else {
-                        row.className = "female";
-                    }
-                    var tabl = table.length;
-                    var cell1 = row.insertCell(0);
-                    cell1.innerHTML = '<b><span class="bigger">' + document.getElementById('Name').value + ' ' + document.getElementById('Surname').value; + '</span></b>';
-                    var cell2 = row.insertCell(1);
-                    cell2.innerHTML = document.getElementById('Email').value;
-                    var cell3 = row.insertCell(2);
-                    cell3.innerHTML = age;
-                    var cell4 = row.insertCell(3);
-                    cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
-                    var cell5 = row.insertCell(4);
-
-
-                    i++;
-
-                    if (i != 1) {
-
-                        if (document.getElementById('male').checked) {
-                            var x = document.getElementById("MyTable").rows[i].cells;
-                            for (var j = 0; j < 5; j++) {
-                                x[j].bgColor = "#337AB7";
-                            }
-                        } else {
-                            var x = document.getElementById("MyTable").rows[i].cells;
-                            for (var j = 0; j < 5; j++) {
-                                x[j].bgColor = "#F48FB1";
-                            }
-                        }
-                    }
-
-
-                    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
-                    document.getElementById("form").reset();
-                    //fix dysplay mode
-                    if (document.getElementById("search") != "") {
-                        search();
-                    } else if (listDysplayeState == 1) {
-                        showFemaleList();
-                    } else if (listDysplayeState == 2) {
-                        showManList();
-                    }
-                    //end fixing
-                }
+        } else {
+            var x = document.getElementById("MyTable").rows[i].cells;
+            for (var j = 0; j < 5; j++) {
+                x[j].bgColor = "#F48FB1";
             }
         }
     }
+
+
+    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
+    document.getElementById("form").reset();
+    //fix dysplay mode
+    if (document.getElementById("search") != "") {
+        search();
+    } else if (listDysplayeState == 1) {
+        showFemaleList();
+    } else if (listDysplayeState == 2) {
+        showManList();
+    }
+    //end fixing
 }
     /*
       var Name = document.getElementById('Name');
