@@ -38,7 +38,7 @@ function isNameValid() {
     return true;
 }
 
-//surname validarot
+//surname validator
 function isSurnameValid() {
     if (document.getElementById('Surname').value == "") {
         document.getElementById("er2").innerHTML = "Enter Surname!";
@@ -102,7 +102,7 @@ function isEmailValid(){
     return true;
 }
 
-//date of birth validator
+//DoB validator
 function isDobValid() {
     if (document.getElementById('Age').value == "") {
         document.getElementById("AgeErr").innerHTML = "Enter date!";
@@ -127,7 +127,7 @@ function isDobValid() {
     return true;
 }
 
-
+//Input validator
 function isInputValid() {
     isNameValid();
     isSurnameValid();
@@ -197,7 +197,7 @@ function Create() {
 
     cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
     document.getElementById("form").reset();
-    //fix dysplay mode
+    //fix display mode
     if (document.getElementById("search") != "") {
         search();
     } else if (listDysplayeState == 1) {
@@ -207,25 +207,7 @@ function Create() {
     }
     //end fixing
 }
-    /*
-      var Name = document.getElementById('Name');
-      var filter = /^[A-Z][a-zA-Z']+[ ]+[A-Z][a-zA-Z'\- ]*$/;
-    
-      if (!filter.test(Name.value)) {
-          swal({
-              title: "Oops...",
-              text: "Enter name and surname!",
-              type: "error",
-              confirmButtonColor: "#AD1457",
-              confirmButtonText: "OK, I understand",
-          }
-    
-           );
-          Name.focus;
-          return false;
-        
-          return true;
-      }*/
+   
     function isInputDateValid(date) {
         var actual_date = new Date()
         var patern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
