@@ -1,7 +1,7 @@
 // JavaScript source code
 charset = "utf-8";
 
-var i = 1;
+var sexColor = 1; //renamed from i to sexColor
 
 /**IMPORTANT!!!**/
 /*
@@ -178,17 +178,17 @@ function AddRow() {
     var cell5 = row.insertCell(4);
 
 
-    i++;
+    sexColor++;
 
-    if (i != 1) {
+    if (sexColor != 1) {
 
         if (document.getElementById('male').checked) {
-            var x = document.getElementById("MyTable").rows[i].cells;
+            var x = document.getElementById("MyTable").rows[sexColor].cells;
             for (var j = 0; j < 5; j++) {
                 x[j].bgColor = "#337AB7";
             }
         } else {
-            var x = document.getElementById("MyTable").rows[i].cells;
+            var x = document.getElementById("MyTable").rows[sexColor].cells;
             for (var j = 0; j < 5; j++) {
                 x[j].bgColor = "#F48FB1";
             }
