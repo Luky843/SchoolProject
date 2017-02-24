@@ -11,7 +11,7 @@ var i = 1;
 */
 var listDysplayeState = 0;
 
-//name validator
+//Name validator
 function isNameValid() {
     if (document.getElementById('Name').value == "") {
         document.getElementById("er1").innerHTML = "Enter Name!";
@@ -38,7 +38,7 @@ function isNameValid() {
     return true;
 }
 
-//surname validator
+//Surname validator
 function isSurnameValid() {
     if (document.getElementById('Surname').value == "") {
         document.getElementById("er2").innerHTML = "Enter Surname!";
@@ -65,7 +65,7 @@ function isSurnameValid() {
     return true;
 }
 
-//validate email
+//Email validator
 function isEmailValid(){
     if (document.getElementById('Email').value == "") {
         document.getElementById("EmErr").innerHTML = "Enter Email!";
@@ -139,7 +139,8 @@ function isInputValid() {
     return false;
 }
 
-function Create() {
+//Create row in table
+function AddRow() {
     
     if (!isInputValid()) {
         return;
@@ -195,9 +196,9 @@ function Create() {
     }
 
 
-    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="Alert(this)" aria-hidden="true" value="Delete"></i>';
+    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="DeleteRow(this)" aria-hidden="true" value="Delete"></i>';
     document.getElementById("form").reset();
-    //fix display mode
+    //Fix display mode
     if (document.getElementById("search") != "") {
         search();
     } else if (listDysplayeState == 1) {
@@ -205,7 +206,7 @@ function Create() {
     } else if (listDysplayeState == 2) {
         showManList();
     }
-    //end fixing
+    //End fixing
 }
    
     function isInputDateValid(date) {
@@ -242,6 +243,7 @@ function Create() {
         return true;
     }
 
+//Unique Email validator
     function isEmailUnique(email) {
         var table = document.getElementById("MyTable");
         for (var i = 0 ; i < table.rows.length; i++) {
@@ -257,8 +259,8 @@ function Create() {
         return true;
     }
 
-
-    function Alert(r) {
+//Delete current row
+    function DeleteRow(r) {
         swal({
             title: "Are you sure?",
             text: "You will not be able to recover this file!",
@@ -276,10 +278,10 @@ function Create() {
         });
     }
 
-    //show only male
+//Show only male
     function showManList() {
         table = document.getElementById("MyTable")
-        //refresh table
+        //Refresh table
         for (var i = 0; i < table.rows.length; i++) {
             try{
                 table.rows[i].style.display = "";
@@ -287,7 +289,7 @@ function Create() {
             }
         }
 
-        //hide female
+        //Hide female
         for (var i = 0; i < table.rows.length; i++) {
             try {
                 var femaleClass = table.rows[i].getAttribute("class");
@@ -305,7 +307,7 @@ function Create() {
 
     function showFemaleList() {
         table = document.getElementById("MyTable")
-        //refresh table
+        //Refresh table
         for (var i = 0; i < table.rows.length; i++) {
             try {
                 table.rows[i].style.display = "";
@@ -313,7 +315,7 @@ function Create() {
             }
         }
 
-        //hide male
+        //Hide male
         for (var i = 0; i < table.rows.length; i++) {
             try {
                 var maleClass = table.rows[i].getAttribute("class"); 
@@ -342,7 +344,8 @@ function Create() {
         }
     }
 
-    function search() {
+//Searching in table
+    function Search() {
         var input, filter, table, tr, td, i;
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
@@ -353,7 +356,7 @@ function Create() {
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
-                    //fix dysplay mode
+                    //Fix display mode
                     if (listDysplayeState == 1) {
                         if (tr[i].getAttribute("class") == "male") {
                             tr[i].style.display = "none";
@@ -363,7 +366,7 @@ function Create() {
                             tr[i].style.display = "none";
                         }
                     }
-                    //end fixing
+                    //End fixing
                 } else {
                     tr[i].style.display = "none";
                 }
