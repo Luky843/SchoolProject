@@ -1,8 +1,6 @@
 // JavaScript source code
 charset = "utf-8";
 
-var sexColor = 1; //renamed from i to sexColor
-
 /**IMPORTANT!!!**/
 /*
 *if listDysplayeState = 0; show both sex
@@ -10,6 +8,12 @@ var sexColor = 1; //renamed from i to sexColor
 *if listDysplayeState = 2; show show only male
 */
 var listDysplayeState = 0;
+
+//JavaScript Closures , solve problem with global variable
+var sexColorFunction = (function () {
+     var counter = 1;
+     return function () {return counter += 1;}
+})();
 
 //Name validator
 function isNameValid() {
@@ -24,7 +28,7 @@ function isNameValid() {
         document.getElementById("er1").style.display = "block";
     }
     var name = document.getElementById('Name');
-    var filter = /^[a-zA-Z ]{3,30}$/;
+    var filter = /^[a-zA-Z ]{1,25}$/;
     if (!filter.test(name.value)) {
         document.getElementById("er1").innerHTML = "Incorrect Name!";
         document.getElementById("er1").style.color = "red";
@@ -51,7 +55,7 @@ function isSurnameValid() {
         document.getElementById("er2").style.display = "block";
     }
     var surname = document.getElementById('Surname');
-    var filter = /^[a-zA-Z ]{4,30}$/;
+    var filter = /^[a-zA-Z ]{1,25}$/;
     if (!filter.test(surname.value)) {
         document.getElementById("er2").innerHTML = "Incorrect Surname!";
         document.getElementById("er2").style.color = "red";
@@ -176,10 +180,10 @@ function AddRow() {
     var cell4 = row.insertCell(3);
     cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
     var cell5 = row.insertCell(4);
-
-
-    sexColor++;
-
+    
+      
+    var sexColor = sexColorFunction(); 
+    
     if (sexColor != 1) {
 
         if (document.getElementById('male').checked) {
@@ -193,9 +197,9 @@ function AddRow() {
                 x[j].bgColor = "#F48FB1";
             }
         }
-    }
-
-
+    }  
+    
+  
     cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="DeleteRow(this)" aria-hidden="true" value="Delete"></i>';
     document.getElementById("form").reset();
     //Fix display mode
@@ -373,3 +377,4 @@ function AddRow() {
             }
         }
     }
+
