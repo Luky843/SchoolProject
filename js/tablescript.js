@@ -15,29 +15,33 @@ var sexColorFunction = (function () {
      return function () {return counter += 1;}
 })();
 
+function displayErrMsg(elm, msg) { //elm = element name; msg = message whitch will dysplayed; (all string type)
+    document.getElementById(elm).innerHTML = msg;
+    document.getElementById(elm).style.color = "red";
+    document.getElementById(elm).style.display = "block";
+}
+
+function clearErrMessage(element) {
+    document.getElementById(element).innerHTML = "";
+    document.getElementById(element).style.color = "red";
+    document.getElementById(element).style.display = "block";
+}
+
 //Name validator
 function isNameValid() {
     if (document.getElementById('Name').value == "") {
-        document.getElementById("er1").innerHTML = "Enter Name!";
-        document.getElementById("er1").style.color = "red";
-        document.getElementById("er1").style.display = "block";
+        displayErrMsg("er1", "Enter Name!");
         return false;
     } else {
-        document.getElementById("er1").innerHTML = "";
-        document.getElementById("er1").style.color = "red";
-        document.getElementById("er1").style.display = "block";
+        clearErrMessage("er1");
     }
     var name = document.getElementById('Name');
     var filter = /^[a-zA-Z ]{1,25}$/;
     if (!filter.test(name.value)) {
-        document.getElementById("er1").innerHTML = "Incorrect Name!";
-        document.getElementById("er1").style.color = "red";
-        document.getElementById("er1").style.display = "block";
+        displayErrMsg("er1", "Incorrect Name!");
         return false;
     } else {
-        document.getElementById("er1").innerHTML = "";
-        document.getElementById("er1").style.color = "red";
-        document.getElementById("er1").style.display = "block";
+        clearErrMessage("er1");
     }
     return true;
 }
@@ -45,26 +49,18 @@ function isNameValid() {
 //Surname validator
 function isSurnameValid() {
     if (document.getElementById('Surname').value == "") {
-        document.getElementById("er2").innerHTML = "Enter Surname!";
-        document.getElementById("er2").style.color = "red";
-        document.getElementById("er2").style.display = "block";
+        displayErrMsg("er2", "Enter Surname!");
         return false;
     } else {
-        document.getElementById("er2").innerHTML = "";
-        document.getElementById("er2").style.color = "red";
-        document.getElementById("er2").style.display = "block";
+        clearErrMessage("er2");
     }
     var surname = document.getElementById('Surname');
     var filter = /^[a-zA-Z ]{1,25}$/;
     if (!filter.test(surname.value)) {
-        document.getElementById("er2").innerHTML = "Incorrect Surname!";
-        document.getElementById("er2").style.color = "red";
-        document.getElementById("er2").style.display = "block";
+        displayErrMsg("er2", "Incorrect Surname!");
         return false;
     } else {
-        document.getElementById("er2").innerHTML = "";
-        document.getElementById("er2").style.color = "red";
-        document.getElementById("er2").style.display = "block";
+        clearErrMessage("er2");
     }
     return true;
 }
@@ -72,36 +68,24 @@ function isSurnameValid() {
 //Email validator
 function isEmailValid(){
     if (document.getElementById('Email').value == "") {
-        document.getElementById("EmErr").innerHTML = "Enter Email!";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        displayErrMsg("EmErr", "Enter Email!");
         return false;
     } else {
-        document.getElementById("EmErr").innerHTML = "";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        clearErrMessage("EmErr");
     }
     var email = document.getElementById('Email');
     var filter = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!filter.test(email.value)) {
-        document.getElementById("EmErr").innerHTML = "Incorrect Email!";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        displayErrMsg("EmErr", "Incorrect Email!");
         return false;
     } else {
-        document.getElementById("EmErr").innerHTML = "";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        clearErrMessage("EmErr");
     }
     if (!isEmailUnique(document.getElementById('Email').value)) {
-        document.getElementById("EmErr").innerHTML = "This Email has been already used!";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        displayErrMsg("EmErr", "This Email has been already used!");
         return false;
     } else {
-        document.getElementById("EmErr").innerHTML = "";
-        document.getElementById("EmErr").style.color = "red";
-        document.getElementById("EmErr").style.display = "block";
+        clearErrMessage("EmErr");
     }
     return true;
 }
@@ -109,24 +93,16 @@ function isEmailValid(){
 //DoB validator
 function isDobValid() {
     if (document.getElementById('Age').value == "") {
-        document.getElementById("AgeErr").innerHTML = "Enter date!";
-        document.getElementById("AgeErr").style.color = "red";
-        document.getElementById("AgeErr").style.display = "block";
+        displayErrMsg("AgeErr", "Enter date!");
         return false;
     } else {
-        document.getElementById("AgeErr").innerHTML = "";
-        document.getElementById("AgeErr").style.color = "red";
-        document.getElementById("AgeErr").style.display = "block";
+        clearErrMessage("AgeErr");
     }
     if (!isInputDateValid(document.getElementById('Age').value)) {
-        document.getElementById("AgeErr").innerHTML = "Incorrect Date!";
-        document.getElementById("AgeErr").style.color = "red";
-        document.getElementById("AgeErr").style.display = "block";
+        displayErrMsg("AgeErr", "Incorrect Date!");
         return false;
     } else {
-        document.getElementById("AgeErr").innerHTML = "";
-        document.getElementById("AgeErr").style.color = "red";
-        document.getElementById("AgeErr").style.display = "block";
+        clearErrMessage("AgeErr");
     }
     return true;
 }
