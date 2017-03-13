@@ -21,11 +21,6 @@ function displayErrMsg(elm, msg) { //elm = element name; msg = message whitch wi
     document.getElementById(elm).style.display = "block";
 }
 
-function clearErrMessage(element) {
-    document.getElementById(element).innerHTML = "";
-    document.getElementById(element).style.color = "red";
-    document.getElementById(element).style.display = "block";
-}
 
 //Name validator
 function isNameValid() {
@@ -33,7 +28,7 @@ function isNameValid() {
         displayErrMsg("er1", "Enter Name!");
         return false;
     } else {
-        clearErrMessage("er1");
+        displayErrMsg("er1", "");
     }
     var name = document.getElementById('Name');
     var filter = /^[a-zA-Z ]{1,25}$/;
@@ -41,7 +36,7 @@ function isNameValid() {
         displayErrMsg("er1", "Incorrect Name!");
         return false;
     } else {
-        clearErrMessage("er1");
+        displayErrMsg("er1", "");
     }
     return true;
 }
@@ -52,7 +47,7 @@ function isSurnameValid() {
         displayErrMsg("er2", "Enter Surname!");
         return false;
     } else {
-        clearErrMessage("er2");
+        displayErrMsg("er1", "");
     }
     var surname = document.getElementById('Surname');
     var filter = /^[a-zA-Z ]{1,25}$/;
@@ -60,7 +55,7 @@ function isSurnameValid() {
         displayErrMsg("er2", "Incorrect Surname!");
         return false;
     } else {
-        clearErrMessage("er2");
+        displayErrMsg("er2", "");
     }
     return true;
 }
@@ -71,7 +66,7 @@ function isEmailValid(){
         displayErrMsg("EmErr", "Enter Email!");
         return false;
     } else {
-        clearErrMessage("EmErr");
+        displayErrMsg("EmErr", "");
     }
     var email = document.getElementById('Email');
     var filter = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -79,13 +74,13 @@ function isEmailValid(){
         displayErrMsg("EmErr", "Incorrect Email!");
         return false;
     } else {
-        clearErrMessage("EmErr");
+        displayErrMsg("EmErr", "");
     }
     if (!isEmailUnique(document.getElementById('Email').value)) {
         displayErrMsg("EmErr", "This Email has been already used!");
         return false;
     } else {
-        clearErrMessage("EmErr");
+        displayErrMsg("EmErr", "");
     }
     return true;
 }
@@ -96,13 +91,13 @@ function isDobValid() {
         displayErrMsg("AgeErr", "Enter date!");
         return false;
     } else {
-        clearErrMessage("AgeErr");
+        displayErrMsg("AgeErr", "");
     }
     if (!isInputDateValid(document.getElementById('Age').value)) {
         displayErrMsg("AgeErr", "Incorrect Date!");
         return false;
     } else {
-        clearErrMessage("AgeErr");
+        displayErrMsg("AgeErr", "");
     }
     return true;
 }
