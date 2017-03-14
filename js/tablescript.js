@@ -10,10 +10,6 @@ charset = "utf-8";
 var listDysplayeState = 0;
 
 //JavaScript Closures , solve problem with global variable
-var sexColorFunction = (function () {
-     var counter = 1;
-     return function () {return counter += 1;}
-})();
 
 function displayErrMsg(elm, msg) { //elm = element name; msg = message whitch will dysplayed; (all string type)
     document.getElementById(elm).innerHTML = msg;
@@ -136,12 +132,13 @@ function AddRow() {
     /***********************************************************/
     var table = document.getElementById("MyTable");
     var row = table.insertRow(table.rows.length);
-    if (document.getElementById('male').checked) {
+    if (document.getElementById('male').checked) { //set class for row
         row.className = "male";
     } else {
         row.className = "female";
     }
-    var tabl = table.length;
+
+    //var tabl = table.length;
     var cell1 = row.insertCell(0);
     cell1.innerHTML = '<b><span class="bigger">' + document.getElementById('Name').value + ' ' + document.getElementById('Surname').value; + '</span></b>';
     var cell2 = row.insertCell(1);
@@ -151,30 +148,13 @@ function AddRow() {
     var cell4 = row.insertCell(3);
     cell4.innerHTML = '<i class="fa fa-' + (document.getElementById('male').checked ? '' : 'fe') + 'male" aria-hidden="true"></i>';
     var cell5 = row.insertCell(4);
-    
-      
-    var sexColor = sexColorFunction(); 
-    
-    if (sexColor != 1) {
+    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em; cursor:pointer" onclick="DeleteRow(this)" aria-hidden="true" value="Delete"></i>';
 
-        if (document.getElementById('male').checked) {
-            var x = document.getElementById("MyTable").rows[sexColor].cells;
-            for (var j = 0; j < 5; j++) {
-                x[j].bgColor = "#337AB7";
-            }
-        } else {
-            var x = document.getElementById("MyTable").rows[sexColor].cells;
-            for (var j = 0; j < 5; j++) {
-                x[j].bgColor = "#F48FB1";
-            }
-        }
-    }  
-    
-  
-    cell5.innerHTML = '<i class="fa fa-trash-o red-500" style="font-size:1.3em;" onclick="DeleteRow(this)" aria-hidden="true" value="Delete"></i>';
+
     document.getElementById("form").reset();
+
     //Fix display mode
-    if (document.getElementById("search") != "") {
+    if (document.getElementById("search").value != "") {
         search();
     } else if (listDysplayeState == 1) {
         showFemaleList();
@@ -275,7 +255,7 @@ function AddRow() {
             }
         }
         listDysplayeState = 2;
-        if (document.getElementById("search") != "") {
+        if (document.getElementById("search").value != "") {
             search();
         }
     }
@@ -301,7 +281,7 @@ function AddRow() {
             }
         }
         listDysplayeState = 1;
-        if (document.getElementById("search") != "") {
+        if (document.getElementById("search").value != "") {
             search();
         }
     }
@@ -314,7 +294,7 @@ function AddRow() {
             }
         }
         listDysplayeState = 0;
-        if (document.getElementById("search") != "") {
+        if (document.getElementById("search").value != "") {
             search();
         }
     }
